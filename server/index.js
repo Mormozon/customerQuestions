@@ -2,12 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const controller = require('./controller');
+const morgan = require('morgan');
+const helmet = require('helmet');
+
 const router = require('./router');
 
 const app = express();
 const port = 3004;
 
+app.use(morgan());
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../client/dist/')));

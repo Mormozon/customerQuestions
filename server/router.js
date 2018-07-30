@@ -1,15 +1,20 @@
 const router = require('express').Router();
 const controller = require('./controller');
 
-router.route('/users')
-  .get(controller.get);
+router.route('/user')
+  .get(controller.getUser)
+  .post(controller.postUser);
 
-router.route('/products')
-  .get(controller.get);
+router.route('/product')
+  .get(controller.getProduct)
+  .post(controller.postProduct);
 
-router.route('/questions')
-  .get(controller.get)
-  .post(controller.post)
-  .delete(controller.delete)
+router.route('/question')
+  .get(controller.getQuestion)
+  .post(controller.postQuestion);
 
-  module.exports = router;
+router.route('/answer')
+  .get(controller.getAnswer)
+  .post(controller.postAnswer);
+
+module.exports = router;
