@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './styles/search.css';
 
 const Search = () => (
-  <div className="search-bar">
-    <input className="form-control" type="text" />
+  <div class={ styles.searchbar } >
+    <i class="a-icon a-icon-search"></i>
   </div>
 );
 

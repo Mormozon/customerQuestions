@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styles from './styles/app.css';
+
 import Search from './Search.jsx';
+// import QAList from './QAList.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -18,9 +21,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div class="container">
         <h2>Customer questions & answers</h2>
-        <Search />
+        <div class={ styles.widget }>
+          <div>
+            <Search />
+          </div>
+        </div>
       </div>
     )
   }
