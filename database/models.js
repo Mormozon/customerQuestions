@@ -42,4 +42,4 @@ Question.hasMany(Answer, {as: 'Answers'});
 
 sequelize.sync({force: false});
 
-module.exports = { User, Product, Question, Answer};
+module.exports = { Product, Question, Answer};
