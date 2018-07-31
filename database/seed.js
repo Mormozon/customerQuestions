@@ -30,4 +30,3 @@ for (let k = 0; k < 100; k++) {
     else {console.log(data)}
   });
 }
-
