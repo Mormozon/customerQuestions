@@ -3,7 +3,7 @@ const { Product, Question, Answer } = require('./models');
 
 for (let i = 0; i < 10; i++) {
   Product.create({
-    name: faker.commerce.productName();
+    name: faker.commerce.productName()
   }, (err, data) => {
     if (err) {console.error(err)}
     else {console.log(data)}
