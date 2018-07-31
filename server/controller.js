@@ -12,7 +12,6 @@ const controller = {
     });
   },
   getQuestion: (req, res) => {
-    console.log(req.query);
     const { question } = req.query;
 
     Question.find({
@@ -33,7 +32,6 @@ const controller = {
     });
   },
   getAnswer: (req, res) => {
-    console.log(req.query);
     const { answer } = req.query;
 
     Answer.find({
