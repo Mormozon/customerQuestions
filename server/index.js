@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 
 const router = require('./router');
+const seed = require('../database/seed');
 
 const app = express();
 const port = 3004;
