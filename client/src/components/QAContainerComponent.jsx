@@ -3,8 +3,8 @@ import axios from 'axios';
 import QuestionComponent from './QuestionComponent.jsx';
 
 class QAContainerComponent extends React.Component {
-  constructor({ productId }) {
-    super({ productId })
+  constructor(props) {
+    super(props)
     this.state = {
       questions: []
     }
@@ -14,14 +14,12 @@ class QAContainerComponent extends React.Component {
     axios
       .get('/api/question', {
         params: {
-          productId: productId
+          productId: this.props.productId
         }
       })
       .then(res => {
-        console.log(res);
         this.setState({
-          // determine format of data returned from db
-          questions: res.data.questions
+          questions: res.data
         });
       })
       .catch(err => {
@@ -32,8 +30,8 @@ class QAContainerComponent extends React.Component {
   render() {
     return (
       <div className="question__list">
-        {this.state.questions.map(question => {
-          return <QuestionComponent question={question} />
+        {this.state.questions.map((question, i) => {
+          return <QuestionComponent question={question} key={i} />
         })}
       </div>
     )

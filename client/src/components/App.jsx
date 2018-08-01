@@ -11,23 +11,8 @@ class QAModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 2
+      productId: Math.floor(Math.random() * 10) + 1
     }
-  }
-
-  componentDidMount() {
-    axios
-      .get('/api/product', {
-        params: {
-          id: productId
-        }
-      })
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.error(err)
-      });
   }
 
   render() {
@@ -40,7 +25,7 @@ class QAModule extends React.Component {
           </div>
           <br />
           <div>
-            <QAContainerComponent productId={this.state.productId}/>
+            <QAContainerComponent productId={this.state.productId} />
           </div>
         </div>
       </div>

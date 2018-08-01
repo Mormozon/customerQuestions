@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import styles from './styles/qaListItem.css';
+// import styles from './styles/qaListItem.css';
 
 class QuestionComponent extends React.Component {
-  constructor({ question }) {
-    super({ question })
+  constructor(props) {
+    super(props)
     this.state = {
-      questionId: question.id,
       answers: [],
       voted: false
     }
@@ -16,15 +15,18 @@ class QuestionComponent extends React.Component {
     axios
       .get('/api/answer', {
         params: {
-          questionId: questionId
+          questionId: this.props.question.id
         }
       })
       .then(res => {
-        console.log(res);
-        this.setState({
-          // determine format of data returned from db
-          answers: res.data.answers
-        });
+        console.log(res.data);
+        if (!res.data.length) {
+          this.setState({answers: 'There are no answers.'});
+        } else {
+          this.setState({
+            answers: res.data[0].answer
+          });
+        }
       })
       .catch(err => {
         console.error(err);
@@ -39,8 +41,8 @@ class QuestionComponent extends React.Component {
           <div className="question__voteText"></div>
           <div className="question__downvote"></div>
         </div>
-        <h3 className="question__text">{`Question: ${question.question}`}</h3>
-        <h3 className="answer__text">{`Answer: ${this.state.answers[0]}`}</h3>
+        <h3 className="question__text">{`Question: ${this.props.question.question}`}</h3>
+        <h3 className="answer__text">{`Answer: ${this.state.answers}`}</h3>
       </div>
     )
   }
