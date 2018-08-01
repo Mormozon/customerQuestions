@@ -18,12 +18,12 @@ class QAModule extends React.Component {
   render() {
     return (
       <div className={ styles.container }>
-        <h2>Customer questions & answers</h2>
+        <h2 className={ styles.header }>Customer questions & answers</h2>
         <div className={ styles.widget }>
           <div>
             <Search />
           </div>
-          <br />
+          <br className={ styles.line__break }/>
           <div>
             <QAContainerComponent productId={this.state.productId} />
           </div>

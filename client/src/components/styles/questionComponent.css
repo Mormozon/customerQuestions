@@ -1,0 +1,25 @@
+:local(.question__body) {
+  display: block;
+}
+
+:local(.question__vote) {
+  width: 65px;
+  border-right: 1px solid #ddd;
+  float: left;
+}
+
+:local(.text__body) {
+  width: 900px;
+  padding-left: 5px;
+  float: left;
+  border: hidden;
+}
+
+:local(.vote__list) {
+  list-style-type: none;
+  text-align: center;
+}
+
+:local(.upvote) {
+  background-image: url('https://m.media-amazon.com/images/G/01/x-locale/communities/discussion_boards/neutral_up_arrow._CB320707204_.png');
+}

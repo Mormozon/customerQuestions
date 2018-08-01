@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-// import styles from './styles/qaListItem.css';
+import styles from './styles/questionComponent.css';
 
 class QuestionComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       answers: [],
+      answer: '',
+      username: '',
+      date: '',
       voted: false
     }
   }
@@ -24,7 +27,10 @@ class QuestionComponent extends React.Component {
           this.setState({answers: 'There are no answers.'});
         } else {
           this.setState({
-            answers: res.data[0].answer
+            answers: res.data,
+            answer: res.data[0].answer,
+            username: res.data[0].username,
+            date: res.data[0].date
           });
         }
       })
@@ -35,14 +41,23 @@ class QuestionComponent extends React.Component {
 
   render() {
     return (
-      <div className="question__body">
-        <div className="question__vote">
-          <div className="question__upvote" onClick={() => {this.handleUpvote(a.id)}}></div>
-          <div className="question__voteText"></div>
-          <div className="question__downvote"></div>
+      <div className={ styles.question__body }>
+        <div className={ styles.question__vote }>
+          <ul className={ styles.vote__list }>
+            <li className={ styles.upvote }></li>
+            <li>0</li>
+            <li className={ styles.downvote }></li>
+          </ul>
         </div>
-        <h3 className="question__text">{`Question: ${this.props.question.question}`}</h3>
-        <h3 className="answer__text">{`Answer: ${this.state.answers}`}</h3>
+        <div className={ styles.text__body }>
+          <div>
+            <h3 className={ styles.question__text }>{`Question: ${this.props.question.question}`}</h3>
+          </div>
+          <div>
+            <h3 className={ styles.answer__text }>{`Answer: ${this.state.answer}`}</h3>
+            <h2 className={ styles.submit_info }>{`By ${this.state.username} on ${this.state.date.slice(0, 10)}`}</h2>
+          </div>
+        </div>
       </div>
     )
   }

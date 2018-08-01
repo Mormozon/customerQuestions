@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import QuestionComponent from './QuestionComponent.jsx';
+import styles from './styles/qaContainerComponent.css';
 
 class QAContainerComponent extends React.Component {
   constructor(props) {
@@ -37,5 +38,6 @@ class QAContainerComponent extends React.Component {
     )
   }
 }
+
 
 export default QAContainerComponent;
