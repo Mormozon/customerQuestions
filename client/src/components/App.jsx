@@ -4,28 +4,43 @@ import axios from 'axios';
 import styles from './styles/app.css';
 
 import Search from './Search.jsx';
-// import QAList from './QAList.jsx';
+import QAContainerComponent from './QAContainerComponent.jsx';
 
 
 class QAModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: []
+      productId: 2
     }
   }
 
   componentDidMount() {
-    console.log('mounted');
+    axios
+      .get('/api/product', {
+        params: {
+          id: productId
+        }
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err)
+      });
   }
 
   render() {
     return (
-      <div class="container">
+      <div className={ styles.container }>
         <h2>Customer questions & answers</h2>
-        <div class={ styles.widget }>
+        <div className={ styles.widget }>
           <div>
             <Search />
+          </div>
+          <br />
+          <div>
+            <QAContainerComponent productId={this.state.productId}/>
           </div>
         </div>
       </div>

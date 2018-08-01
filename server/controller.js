@@ -12,14 +12,25 @@ const controller = {
     });
   },
   getQuestion: (req, res) => {
-    const { question } = req.query;
+    const { question, productId } = req.query;
 
-    Question.find({
-      question: question
-    }, (err, data) => {
-      if (err) {console.error(err)}
-      else {res.status(200).send(data)}
-    });
+    if (productId) {
+      Question.findAll({
+        where: {
+          productId: productId
+        }
+      }, (err, data) => {
+        if (err) {console.error(err)}
+        else {res.status(200).send(data)}        
+      });
+    } else {
+      Question.find({
+        question: question
+      }, (err, data) => {
+        if (err) {console.error(err)}
+        else {res.status(200).send(data)}
+      });
+  }
   },
   postQuestion: (req, res) => {
     const { question } = req.body;
@@ -32,14 +43,25 @@ const controller = {
     });
   },
   getAnswer: (req, res) => {
-    const { answer } = req.query;
+    const { answer, questionId } = req.query;
 
-    Answer.find({
-      answer: answer
-    }, (err, data) => {
-      if (err) {console.error(err)}
-      else {res.status(200).send(data)}
-    });
+    if (questionId) {
+      Answer.findAll({
+        where: {
+          questionId: questionId
+        }
+      }, (err, data) => {
+        if (err) {console.error(err)}
+        else {res.status(200).send(data)}        
+      });
+    } else {
+      Answer.find({
+        answer: answer
+      }, (err, data) => {
+        if (err) {console.error(err)}
+        else {res.status(200).send(data)}
+      });  
+    }
   },
   postAnswer: (req, res) => {
     const { answer, username } = req.body;

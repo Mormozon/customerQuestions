@@ -8,7 +8,7 @@ h2 {
   padding-left: 10px;
 }
 
-.widget {
+:local(.widget) {
   padding-left: 10px;
   max-width: 1000px;
 }

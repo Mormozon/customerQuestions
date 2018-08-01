@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './styles/search.css';
 
 const Search = () => (
-  <div class={ styles.searchbar } >
-    <i class="a-icon a-icon-search"></i>
+  <div className={ styles.searchbar } >
+    <input className={ styles.searchinput }type="search" maxlength="150" placeholder="Have a question? Search for answers"/>
   </div>
 );
 
