@@ -23,7 +23,6 @@ class QAModule extends React.Component {
           <div>
             <Search />
           </div>
-          <br className={ styles.line__break }/>
           <div>
             <QAContainerComponent productId={this.state.productId} />
           </div>

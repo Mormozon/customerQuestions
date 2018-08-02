@@ -12,7 +12,3 @@
   padding-left: 10px;
   max-width: 1000px;
 }
-
-:local(.line__break) {
-  line-height: 24px;
-}

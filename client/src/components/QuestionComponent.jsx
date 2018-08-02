@@ -10,7 +10,7 @@ class QuestionComponent extends React.Component {
       answer: '',
       username: '',
       date: '',
-      voted: false
+      voted: false,
     }
   }
 
@@ -24,13 +24,13 @@ class QuestionComponent extends React.Component {
       .then(res => {
         console.log(res.data);
         if (!res.data.length) {
-          this.setState({answers: 'There are no answers.'});
+          this.setState({answers: []});
         } else {
           this.setState({
             answers: res.data,
             answer: res.data[0].answer,
             username: res.data[0].username,
-            date: res.data[0].date
+            date: serializeDate(res.data[0].date)
           });
         }
       })
@@ -40,27 +40,44 @@ class QuestionComponent extends React.Component {
   }
 
   render() {
+    console.log(this.state.answer.length);
+    if (!this.state.answers.length) {
+      return (
+        <span></span>
+      )
+    }
     return (
-      <div className={ styles.question__body }>
-        <div className={ styles.question__vote }>
-          <ul className={ styles.vote__list }>
+      <div className={ styles.qaItemContainer }>
+        <div className={ styles.questionVote }>
+          <ul className={ styles.voteList }>
             <li className={ styles.upvote }></li>
-            <li>0</li>
+            <li className={ styles.voteCount }>0</li>
+            <li className={ styles.voteCountText}>votes</li>
             <li className={ styles.downvote }></li>
           </ul>
         </div>
-        <div className={ styles.text__body }>
-          <div>
-            <h3 className={ styles.question__text }>{`Question: ${this.props.question.question}`}</h3>
+        <div className={ styles.textBody }>
+          <div className={ styles.questionComponent }>
+            <div className={ styles.questionStatic }>Question: </div>
+            <div className={ styles.questionText }>{this.props.question.question}</div>
           </div>
-          <div>
-            <h3 className={ styles.answer__text }>{`Answer: ${this.state.answer}`}</h3>
-            <h2 className={ styles.submit_info }>{`By ${this.state.username} on ${this.state.date.slice(0, 10)}`}</h2>
+          <div className={ styles.answerComponent }>
+            <div className={ styles.answerStatic }>Answer: </div>
+            <div className={ styles.answerTextBody }>
+              <div className={ styles.answerText }>{this.state.answer}</div>
+              <div className={ styles.answerInfo }>{`By ${this.state.username} on ${this.state.date}`}</div>
+            </div>
           </div>
         </div>
       </div>
     )
   }
+}
+
+function serializeDate(date) {
+  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const [ year, month, day ] = date.slice(0, 10).split('-');
+  return `${months[(parseInt(month) - 1)]} ${day}, ${year}`;
 }
 
 export default QuestionComponent;

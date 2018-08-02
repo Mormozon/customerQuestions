@@ -7,7 +7,8 @@ class QAContainerComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questions: []
+      questions: [],
+      hasAnswer: false
     }
   }
 
@@ -32,7 +33,7 @@ class QAContainerComponent extends React.Component {
     return (
       <div className="question__list">
         {this.state.questions.map((question, i) => {
-          return <QuestionComponent question={question} key={i} />
+          return <QuestionComponent question={question} key={i} checkForAnswer={this.checkForAnswer} />
         })}
       </div>
     )
