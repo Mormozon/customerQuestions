@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('qaModule', 'postgres', 'postgresphil', {
+const { username, password } = require('../config.js');
+
+const sequelize = new Sequelize('qaModule', username, password, {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
