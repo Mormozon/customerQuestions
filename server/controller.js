@@ -2,7 +2,7 @@ const { Product, Question, Answer } = require ('../database/models');
 
 const controller = {
   getProduct: (req, res) => {
-    const { productName } = req.query;
+    let { productName } = req.query;
     
     Product.find({
       where: {
@@ -12,7 +12,7 @@ const controller = {
       .catch(err => {console.error(err)});
   },
   getQuestion: (req, res) => {
-    const { productId } = req.query;
+    let { productId } = req.query;
 
     Question.findAll({
       where: {
@@ -22,8 +22,19 @@ const controller = {
     .then(question => {res.status(200).send(question)})
     .catch(err => {console.error(err)});
   },
+  postQuestion: (req, res) => {
+    let { question } = req.body;
+
+    Question.findOrCreate({
+      where: {
+        question: question
+      }
+    })
+    .then(data => {res.status(201).send(data)})
+    .catch(err => {console.error(err)});
+  },
   getAnswer: (req, res) => {
-    const { questionId } = req.query;
+    let { questionId } = req.query;
     
     Answer.findAll({
       where: {
@@ -31,6 +42,18 @@ const controller = {
       } 
     })
     .then(answer => {res.status(200).send(answer)})
+    .catch(err => {console.error(err)});
+  },
+  postAnswer: (req, res) => {
+    let { answer, username } = req.body;
+
+    Answer.findOrCreate({
+      where: {
+        answer: answer,
+        username: username
+      }
+    })
+    .then(data => {res.status(201).send(data)})
     .catch(err => {console.error(err)});
   }
 }
